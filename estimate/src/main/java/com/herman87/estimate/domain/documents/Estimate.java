@@ -31,7 +31,7 @@ public class Estimate {
 
     @Builder.Default
     @Column(name = "c_created_at")
-    private LocalDateTime localDateTime = LocalDateTime.now();
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Builder.Default
     @OneToMany(mappedBy = "estimate", fetch = FetchType.LAZY)
