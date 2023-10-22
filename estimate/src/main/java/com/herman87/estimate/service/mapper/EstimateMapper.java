@@ -7,11 +7,14 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.openapitools.model.EstimateDTO;
 
-@Mapper(injectionStrategy = InjectionStrategy.CONSTRUCTOR)
+@Mapper(
+        componentModel = "spring",
+        injectionStrategy = InjectionStrategy.CONSTRUCTOR
+)
 public interface EstimateMapper {
 
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "title")
     @Mapping(target = "description")
-    Estimate fromDTO(EstimateDTO value);
+    Estimate fromEstimate(EstimateDTO value);
 }

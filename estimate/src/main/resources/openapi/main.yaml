@@ -21,7 +21,11 @@ paths:
         required: true
       responses:
         201:
-          description: estimate create successfully
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: integer
 components:
   schemas:
     EstimateDTO:
@@ -38,3 +42,11 @@ components:
           format: date-time
           description: Creation date and time
           example: "2021-01-30T08:30:00Z"
+
+#          parameters:
+#            - name: extractCode
+#              in: query
+#              required: true
+#              description: value that represent the number of fields to extract
+#              schema:
+#                type: string
