@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,5 +27,20 @@ public class EstimateService {
                 ).map(estimateRepository::save)
                 .map(Estimate::getId)
                 .orElseThrow();
+    }
+
+    @Transactional
+    public List<EstimateDTO> fetchAllEstimate() {
+        return estimateRepository.findAll()
+                .stream()
+                .map(
+                        estimate -> EstimateDTO.builder()
+                                        .id(estimate.getId())
+                                        .title(estimate.getTitle())
+                                        .description(estimate.getDescription())
+                                        .createdAt(estimate.getCreatedAt())
+                                        .build()
+                )
+                .toList();
     }
 }
