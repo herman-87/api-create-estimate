@@ -24,4 +24,9 @@ public class EstimateResource {
     public ResponseEntity<List<EstimateDTO>> getAllEstimates() {
         return ResponseEntity.status(HttpStatus.OK).body(estimateService.fetchAllEstimate());
     }
+
+    @GetMapping("estimate/{id}")
+    public ResponseEntity<EstimateDTO> getEstimateById(@PathVariable("id") int estimateId) {
+        return ResponseEntity.status(HttpStatus.OK).body(estimateService.fetchEstimateById(estimateId));
+    }
 }

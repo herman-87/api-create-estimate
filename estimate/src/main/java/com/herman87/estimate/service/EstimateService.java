@@ -33,14 +33,24 @@ public class EstimateService {
     public List<EstimateDTO> fetchAllEstimate() {
         return estimateRepository.findAll()
                 .stream()
-                .map(
-                        estimate -> EstimateDTO.builder()
-                                        .id(estimate.getId())
-                                        .title(estimate.getTitle())
-                                        .description(estimate.getDescription())
-                                        .createdAt(estimate.getCreatedAt())
-                                        .build()
-                )
+                .map(EstimateService::toEstimateDTO)
                 .toList();
+    }
+
+    private static EstimateDTO toEstimateDTO(Estimate estimate) {
+        return EstimateDTO.builder()
+                .id(estimate.getId())
+                .title(estimate.getTitle())
+                .description(estimate.getDescription())
+                .createdAt(estimate.getCreatedAt())
+                .build();
+    }
+
+    @Transactional
+    public EstimateDTO fetchEstimateById(int estimateId) {
+        return Optional.of(estimateId)
+                .flatMap(estimateRepository::findById)
+                .map(EstimateService::toEstimateDTO)
+                .orElseThrow();
     }
 }
