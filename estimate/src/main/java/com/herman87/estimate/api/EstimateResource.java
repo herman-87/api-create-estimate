@@ -1,15 +1,22 @@
 package com.herman87.estimate.api;
 
-import org.openapitools.api.EstimateApi;
-import org.openapitools.model.EstimateDTO;
+import com.herman87.estimate.dto.EstimateDTO;
+import com.herman87.estimate.service.EstimateService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class EstimateResource implements EstimateApi {
+@RequiredArgsConstructor
+public class EstimateResource {
+    private final EstimateService estimateService;
 
-    @Override
-    public ResponseEntity<Void> createEstimate(EstimateDTO estimateDTO) {
-        return null;
+
+    @PostMapping("/estimate")
+    public ResponseEntity<Integer> createEstimate(@RequestBody EstimateDTO estimateDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(estimateService.createEstimate(estimateDTO));
     }
 }
