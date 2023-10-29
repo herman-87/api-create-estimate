@@ -51,6 +51,11 @@ public class EstimateService {
         return Optional.of(estimateId)
                 .flatMap(estimateRepository::findById)
                 .map(EstimateService::toEstimateDTO)
-                .orElseThrow();
+                .orElse(null);
+    }
+
+    @Transactional
+    public void deleteEstimateById(int estimateId) {
+        Optional.of(estimateId).ifPresent(estimateRepository::deleteById);
     }
 }

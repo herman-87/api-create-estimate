@@ -29,4 +29,10 @@ public class EstimateResource {
     public ResponseEntity<EstimateDTO> getEstimateById(@PathVariable("id") int estimateId) {
         return ResponseEntity.status(HttpStatus.OK).body(estimateService.fetchEstimateById(estimateId));
     }
+
+    @DeleteMapping("/estimate/{id}")
+    public ResponseEntity<Void> deleteEstimateById(@PathVariable("id") int estimateId) {
+        estimateService.deleteEstimateById(estimateId);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 }
