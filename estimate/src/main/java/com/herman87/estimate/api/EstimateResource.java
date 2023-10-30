@@ -1,5 +1,6 @@
 package com.herman87.estimate.api;
 
+import com.herman87.estimate.dto.EntryDTO;
 import com.herman87.estimate.dto.EstimateDTO;
 import com.herman87.estimate.service.EstimateService;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,7 @@ public class EstimateResource {
         return ResponseEntity.status(HttpStatus.OK).body(estimateService.fetchAllEstimate());
     }
 
-    @GetMapping("estimate/{id}")
+    @GetMapping("/estimate/{id}")
     public ResponseEntity<EstimateDTO> getEstimateById(@PathVariable("id") int estimateId) {
         return ResponseEntity.status(HttpStatus.OK).body(estimateService.fetchEstimateById(estimateId));
     }
@@ -34,5 +35,11 @@ public class EstimateResource {
     public ResponseEntity<Void> deleteEstimateById(@PathVariable("id") int estimateId) {
         estimateService.deleteEstimateById(estimateId);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PostMapping("/estimate/{id}/entries")
+    public ResponseEntity<Void> addEntriesInEstimateBy(@PathVariable("id") int estimateId, @RequestBody List<EntryDTO> entryDTOList) {
+        estimateService.addEntries(estimateId, entryDTOList);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

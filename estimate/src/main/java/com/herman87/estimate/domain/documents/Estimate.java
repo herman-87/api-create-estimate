@@ -34,10 +34,11 @@ public class Estimate {
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @Builder.Default
-    @OneToMany(mappedBy = "estimate", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "estimate", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Entry> entries = new ArrayList<>();
 
-    public void addEntry(Entry entry) {
-        this.entries.add(entry);
+    public Estimate addEntries(List<Entry> entry) {
+        this.entries.addAll(entry);
+        return this;
     }
 }
