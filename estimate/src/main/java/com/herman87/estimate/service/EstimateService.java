@@ -4,6 +4,7 @@ import com.herman87.estimate.domain.documents.Entry;
 import com.herman87.estimate.domain.documents.Estimate;
 import com.herman87.estimate.dto.EntryDTO;
 import com.herman87.estimate.dto.EstimateDTO;
+import com.herman87.estimate.repository.EntryRepository;
 import com.herman87.estimate.repository.EstimateRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class EstimateService {
     private final EstimateRepository estimateRepository;
+    private final EntryRepository entryRepository;
 
     private static EstimateDTO toEstimateDTO(Estimate estimate) {
         return EstimateDTO.builder()
@@ -81,5 +83,20 @@ public class EstimateService {
         estimate.addEntries(entryList);
 
         estimateRepository.save(estimate);
+    }
+
+    @Transactional
+    public EntryDTO fetchEntryById(int entryId) {
+        return Optional.of(entryId)
+                .flatMap(entryRepository::findById)
+                .map(
+                        entry -> EntryDTO.builder()
+                                .id(entry.getId())
+                                .quantity(entry.getQuantity())
+                                .unitPrice(entry.getUnitPrice())
+                                .designation(entry.getDesignation())
+                                .build()
+                )
+                .orElseThrow();
     }
 }

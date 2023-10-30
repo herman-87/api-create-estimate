@@ -42,4 +42,9 @@ public class EstimateResource {
         estimateService.addEntries(estimateId, entryDTOList);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    @GetMapping("/entry/{id}")
+    public ResponseEntity<EntryDTO> getEntryById(@PathVariable("id") int entryId){
+        return ResponseEntity.status(HttpStatus.OK).body(estimateService.fetchEntryById(entryId));
+    }
 }
