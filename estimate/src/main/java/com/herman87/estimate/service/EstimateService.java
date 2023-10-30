@@ -99,4 +99,9 @@ public class EstimateService {
                 )
                 .orElseThrow();
     }
+
+    @Transactional
+    public void deleteEntryById(int entryId) {
+        Optional.of(entryId).ifPresent(entryRepository::deleteById);
+    }
 }
