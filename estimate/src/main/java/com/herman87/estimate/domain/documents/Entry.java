@@ -26,7 +26,7 @@ public class Entry {
     @Column(name = "c_unit_price")
     private double unitPrice;
 
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @JoinColumn(name = "c_estimate", referencedColumnName = "c_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "c_estimate", referencedColumnName = "c_id")
     private Estimate estimate;
 }
