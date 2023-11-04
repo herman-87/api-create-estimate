@@ -8,9 +8,11 @@ import com.herman87.estimate.repository.EntryRepository;
 import com.herman87.estimate.repository.EstimateRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -109,10 +111,7 @@ public class EstimateService {
 
     @Transactional
     public List<EntryDTO> getAllEntriesByEstimateId(int estimateId) {
-        List<Entry> entries = Optional.of(estimateId)
-                .map(entryRepository::findAllByEstimateId)
-                .orElseThrow();
-
+        List<Entry> entries = getEntriesByEstimateId(estimateId);
         return entries.stream()
                 .map(entry -> EntryDTO.builder()
                         .designation(entry.getDesignation())
@@ -120,5 +119,36 @@ public class EstimateService {
                         .quantity(entry.getQuantity())
                         .build()
                 ).toList();
+    }
+
+    private List<Entry> getEntriesByEstimateId(int estimateId) {
+        List<Entry> entries = Optional.of(estimateId)
+                .map(entryRepository::findAllByEstimateId)
+                .orElseThrow();
+        return entries;
+    }
+
+    @Transactional
+    public void generatePdfDocumentVByEstimateId(int estimateId) throws JRException {
+        List<Entry> entries = getEntriesByEstimateId(estimateId);
+        List<EntryDTO> entryDTOS = entries.stream()
+                .map(
+                        entry -> EntryDTO.builder()
+                                .designation(entry.getDesignation())
+                                .unitPrice(entry.getUnitPrice())
+                                .quantity(entry.getQuantity())
+                                .total(0d)
+                                .build()
+                ).toList();
+
+        JRBeanCollectionDataSource estimateDataSource = new JRBeanCollectionDataSource(entryDTOS);
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("productDataSet", estimateDataSource);
+        String filePath = "C:\\H87\\estimate\\estimate\\src\\main\\resources\\templates\\estimateReport.jrxml";
+        String destinationFileName = "C:\\H87\\estimate\\estimate\\src\\main\\resources\\static\\estimate.pdf";
+        JasperReport reportTemplate = JasperCompileManager.compileReport(filePath);
+        JasperPrint reportToPrint = JasperFillManager.fillReport(reportTemplate, parameters, new JREmptyDataSource());
+        JasperExportManager.exportReportToPdfFile(reportToPrint, destinationFileName);
+        System.out.println("Report generated successfully");
     }
 }
