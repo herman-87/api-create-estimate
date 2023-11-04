@@ -4,6 +4,8 @@ import com.herman87.estimate.dto.EntryDTO;
 import com.herman87.estimate.dto.EstimateDTO;
 import com.herman87.estimate.service.EstimateService;
 import lombok.RequiredArgsConstructor;
+import net.sf.jasperreports.engine.JRException;
+import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +31,12 @@ public class EstimateResource {
     @GetMapping("/estimate/{id}")
     public ResponseEntity<EstimateDTO> getEstimateById(@PathVariable("id") int estimateId) {
         return ResponseEntity.status(HttpStatus.OK).body(estimateService.fetchEstimateById(estimateId));
+    }
+
+    @GetMapping("/estimate/{id}/generate")
+    public ResponseEntity<Void> generatePdfDocumentByEstimateId(@PathVariable("id") int estimateId) throws JRException {
+        estimateService.generatePdfDocumentVByEstimateId(estimateId);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @DeleteMapping("/estimate/{id}")
