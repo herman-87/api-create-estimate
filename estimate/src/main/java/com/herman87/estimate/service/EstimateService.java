@@ -12,6 +12,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -104,5 +105,20 @@ public class EstimateService {
     @Transactional
     public void deleteEntryById(int entryId) {
         Optional.of(entryId).ifPresent(entryRepository::deleteById);
+    }
+
+    @Transactional
+    public List<EntryDTO> getAllEntriesByEstimateId(int estimateId) {
+        List<Entry> entries = Optional.of(estimateId)
+                .map(entryRepository::findAllByEstimateId)
+                .orElseThrow();
+
+        return entries.stream()
+                .map(entry -> EntryDTO.builder()
+                        .designation(entry.getDesignation())
+                        .unitPrice(entry.getUnitPrice())
+                        .quantity(entry.getQuantity())
+                        .build()
+                ).toList();
     }
 }

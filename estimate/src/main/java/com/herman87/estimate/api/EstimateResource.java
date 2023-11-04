@@ -47,6 +47,10 @@ public class EstimateResource {
     public ResponseEntity<EntryDTO> getEntryById(@PathVariable("id") int entryId) {
         return ResponseEntity.status(HttpStatus.OK).body(estimateService.fetchEntryById(entryId));
     }
+    @GetMapping("/estimate/{id}/entries")
+    public ResponseEntity<List<EntryDTO>> getEntriesByEstimate(@PathVariable("id") int estimateId) {
+        return ResponseEntity.status(HttpStatus.OK).body(estimateService.getAllEntriesByEstimateId(estimateId));
+    }
 
     @DeleteMapping("/entry/{id}")
     public ResponseEntity<Void> deleteEntryById(@PathVariable("id") int entryId) {
