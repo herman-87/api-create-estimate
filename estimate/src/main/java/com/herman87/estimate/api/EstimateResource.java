@@ -44,7 +44,7 @@ public class EstimateResource {
     }
 
     @GetMapping("/entry/{id}")
-    public ResponseEntity<EntryDTO> getEntryById(@PathVariable("id") int entryId){
+    public ResponseEntity<EntryDTO> getEntryById(@PathVariable("id") int entryId) {
         return ResponseEntity.status(HttpStatus.OK).body(estimateService.fetchEntryById(entryId));
     }
 
