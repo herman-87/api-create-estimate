@@ -14,5 +14,6 @@ public class EntryDTO {
     private String designation;
     private int quantity;
     private double unitPrice;
+    private double total;
     private EstimateDTO estimateDTO;
 }

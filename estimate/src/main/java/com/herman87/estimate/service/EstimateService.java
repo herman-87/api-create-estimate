@@ -8,6 +8,7 @@ import com.herman87.estimate.repository.EntryRepository;
 import com.herman87.estimate.repository.EstimateRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
