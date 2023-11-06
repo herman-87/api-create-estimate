@@ -44,27 +44,74 @@
     <background>
         <band splitType="Stretch"/>
     </background>
-    <title>
-        <band height="79" splitType="Stretch"/>
-    </title>
     <pageHeader>
-        <band height="38" splitType="Stretch">
+        <band height="123" splitType="Stretch">
+            <rectangle>
+                <reportElement x="0" y="0" width="555" height="15" backcolor="rgba(252, 231, 91, 0.9372549)" uuid="89159672-aea2-4746-a59a-a098408ef189">
+                    <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <graphicElement>
+                    <pen lineColor="rgba(0, 0, 0, 0.0)"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement mode="Opaque" x="0" y="16" width="555" height="104" backcolor="rgba(247, 247, 247, 0.9607843)" uuid="e7d512c7-d5c0-4426-9958-218ec818b758">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <graphicElement>
+                    <pen lineColor="rgba(0, 0, 0, 0.0)"/>
+                </graphicElement>
+            </rectangle>
             <staticText>
-                <reportElement x="180" y="4" width="230" height="30" forecolor="#F5164A" uuid="3871a40f-dd06-4960-b566-8cc3bec6e3ce"/>
-                <textElement textAlignment="Center">
-                    <font fontName="Times New Roman" size="16" isBold="true"/>
+                <reportElement x="84" y="32" width="112" height="20" uuid="131ea7db-40ea-4b7e-89ba-60da9127cf4f"/>
+                <textElement textAlignment="Left">
+                    <font size="8"/>
+                    <paragraph lineSpacingSize="1.0"/>
                 </textElement>
-                <text><![CDATA[Voici alors un savoir faire de plus]]></text>
+                <text><![CDATA[<Your compagny name>]]></text>
             </staticText>
+            <staticText>
+                <reportElement x="84" y="55" width="112" height="20" uuid="c9be2a64-cb4e-4f6c-a4ae-abece723d5f2"/>
+                <textElement textAlignment="Left">
+                    <font size="8"/>
+                    <paragraph lineSpacingSize="1.0"/>
+                </textElement>
+                <text><![CDATA[<Your address>]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="84" y="73" width="112" height="20" uuid="73ae0a72-9755-4b95-87f5-d9080da95dd1"/>
+                <textElement textAlignment="Left">
+                    <font size="8"/>
+                    <paragraph lineSpacingSize="1.0"/>
+                </textElement>
+                <text><![CDATA[<Your compagny name>]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="450" y="28" width="70" height="22" uuid="e9d195c9-e8ce-4272-ba7d-a657237e4cee"/>
+                <textElement textAlignment="Center">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ESTIMATE]]></text>
+            </staticText>
+            <line>
+                <reportElement x="450" y="80" width="77" height="1" uuid="b02ae5f6-44ec-4cd3-bb72-03b8277e6d16"/>
+            </line>
+            <line>
+                <reportElement x="450" y="100" width="77" height="1" uuid="6968f09e-d9fd-4c02-83aa-a497193af6f2"/>
+            </line>
+            <ellipse>
+                <reportElement mode="Opaque" x="11" y="30" width="68" height="59" forecolor="#030303" backcolor="#A1A1A1" uuid="25f5559d-e078-40e4-9cda-5af49cf70c2e"/>
+            </ellipse>
         </band>
     </pageHeader>
     <columnHeader>
-        <band height="61" splitType="Stretch"/>
+        <band splitType="Stretch"/>
     </columnHeader>
     <detail>
         <band height="245" splitType="Stretch">
             <componentElement>
-                <reportElement x="60" y="30" width="390" height="170" uuid="e5e5720a-ab13-45e1-9703-687afebd77d1">
+                <reportElement x="20" y="80" width="524" height="160" uuid="e5e5720a-ab13-45e1-9703-687afebd77d1">
                     <property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
                     <property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
                     <property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
@@ -78,7 +125,9 @@
                         <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
                         <jr:columnHeader style="Table_CH" height="30" rowSpan="1">
                             <staticText>
-                                <reportElement x="0" y="0" width="90" height="30" uuid="e6c5f8e0-3ece-4eb6-ade1-3e06da8161ab"/>
+                                <reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="rgba(252, 231, 91, 0.9372549)" uuid="e6c5f8e0-3ece-4eb6-ade1-3e06da8161ab">
+                                    <property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+                                </reportElement>
                                 <textElement textAlignment="Center" verticalAlignment="Middle"/>
                                 <text><![CDATA[Designation]]></text>
                             </staticText>
@@ -95,7 +144,7 @@
                         <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
                         <jr:columnHeader style="Table_CH" height="30" rowSpan="1">
                             <staticText>
-                                <reportElement x="0" y="0" width="80" height="30" uuid="2c6690f8-b1f5-4329-ac7c-33e4ea975d79"/>
+                                <reportElement mode="Opaque" x="0" y="0" width="80" height="30" backcolor="rgba(252, 231, 91, 0.9372549)" uuid="2c6690f8-b1f5-4329-ac7c-33e4ea975d79"/>
                                 <textElement textAlignment="Center" verticalAlignment="Middle"/>
                                 <text><![CDATA[Quantite]]></text>
                             </staticText>
@@ -112,7 +161,7 @@
                         <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
                         <jr:columnHeader style="Table_CH" height="30" rowSpan="1">
                             <staticText>
-                                <reportElement x="0" y="0" width="80" height="30" uuid="a9496190-76be-4d1c-9f88-1f8af0869c6b"/>
+                                <reportElement mode="Opaque" x="0" y="0" width="80" height="30" backcolor="rgba(252, 231, 91, 0.9372549)" uuid="a9496190-76be-4d1c-9f88-1f8af0869c6b"/>
                                 <textElement textAlignment="Center" verticalAlignment="Middle"/>
                                 <text><![CDATA[Prix unitaire]]></text>
                             </staticText>
@@ -125,18 +174,18 @@
                             </textField>
                         </jr:detailCell>
                     </jr:column>
-                    <jr:column width="120" uuid="2f073dbb-35c7-4aa4-a280-59ba83909575">
+                    <jr:column width="274" uuid="2f073dbb-35c7-4aa4-a280-59ba83909575">
                         <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
                         <jr:columnHeader style="Table_CH" height="30" rowSpan="1">
                             <staticText>
-                                <reportElement x="0" y="0" width="120" height="30" uuid="7b60ccbb-f71f-44bf-b0a0-ffa55e103993"/>
+                                <reportElement mode="Opaque" x="0" y="0" width="274" height="30" backcolor="rgba(252, 231, 91, 0.9372549)" uuid="7b60ccbb-f71f-44bf-b0a0-ffa55e103993"/>
                                 <textElement textAlignment="Center" verticalAlignment="Middle"/>
                                 <text><![CDATA[Total]]></text>
                             </staticText>
                         </jr:columnHeader>
                         <jr:detailCell style="Table_TD" height="30">
                             <textField>
-                                <reportElement x="0" y="0" width="120" height="30" uuid="2f1dc63c-cb53-4a02-85f4-e53e83da582b"/>
+                                <reportElement x="0" y="0" width="274" height="30" uuid="2f1dc63c-cb53-4a02-85f4-e53e83da582b"/>
                                 <textElement textAlignment="Center" verticalAlignment="Middle"/>
                                 <textFieldExpression><![CDATA[$F{quantity}*$F{unitPrice}]]></textFieldExpression>
                             </textField>
@@ -144,15 +193,34 @@
                     </jr:column>
                 </jr:table>
             </componentElement>
+            <staticText>
+                <reportElement x="50" y="40" width="470" height="30" uuid="609ff565-6878-4cba-a5b1-f54d98f3114f"/>
+                <textElement textAlignment="Center">
+                    <font size="10" isUnderline="true"/>
+                    <paragraph lineSpacing="1_1_2" lineSpacingSize="1.0"/>
+                </textElement>
+                <text><![CDATA[TITLE OF INVOICE]]></text>
+            </staticText>
         </band>
     </detail>
     <columnFooter>
-        <band height="45" splitType="Stretch"/>
+        <band height="11" splitType="Stretch"/>
     </columnFooter>
     <pageFooter>
-        <band height="54" splitType="Stretch"/>
+        <band height="113" splitType="Stretch">
+            <rectangle>
+                <reportElement mode="Opaque" x="0" y="91" width="555" height="15" backcolor="#FBE75B" uuid="55ad6f69-b891-41d3-851e-614fd5e26e71">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <graphicElement>
+                    <pen lineColor="rgba(0, 0, 0, 0.0)"/>
+                </graphicElement>
+            </rectangle>
+            <staticText>
+                <reportElement x="60" y="90" width="420" height="15" uuid="4e7edac2-961c-463e-b8a5-1eaff38665c9"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[your slogan]]></text>
+            </staticText>
+        </band>
     </pageFooter>
-    <summary>
-        <band height="42" splitType="Stretch"/>
-    </summary>
 </jasperReport>
