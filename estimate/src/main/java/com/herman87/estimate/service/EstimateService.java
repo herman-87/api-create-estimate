@@ -12,6 +12,8 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.stereotype.Service;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -129,7 +131,7 @@ public class EstimateService {
     }
 
     @Transactional
-    public void generatePdfDocumentVByEstimateId(int estimateId) throws JRException {
+    public byte[] generatePdfDocumentByEstimateId(int estimateId) throws JRException {
         List<Entry> entries = getEntriesByEstimateId(estimateId);
         List<EntryDTO> entryDTOS = entries.stream()
                 .map(
@@ -145,10 +147,9 @@ public class EstimateService {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("productDataSet", estimateDataSource);
         String filePath = "C:\\H87\\estimate\\estimate\\src\\main\\resources\\templates\\estimateReport.jrxml";
-        String destinationFileName = "C:\\H87\\estimate\\estimate\\src\\main\\resources\\static\\estimate.pdf";
         JasperReport reportTemplate = JasperCompileManager.compileReport(filePath);
         JasperPrint reportToPrint = JasperFillManager.fillReport(reportTemplate, parameters, new JREmptyDataSource());
-        JasperExportManager.exportReportToPdfFile(reportToPrint, destinationFileName);
-        System.out.println("Report generated successfully");
+
+        return JasperExportManager.exportReportToPdf(reportToPrint);
     }
 }

@@ -5,8 +5,9 @@ import com.herman87.estimate.dto.EstimateDTO;
 import com.herman87.estimate.service.EstimateService;
 import lombok.RequiredArgsConstructor;
 import net.sf.jasperreports.engine.JRException;
-import org.apache.catalina.connector.Response;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,9 +35,13 @@ public class EstimateResource {
     }
 
     @GetMapping("/estimate/{id}/generate")
-    public ResponseEntity<Void> generatePdfDocumentByEstimateId(@PathVariable("id") int estimateId) throws JRException {
-        estimateService.generatePdfDocumentVByEstimateId(estimateId);
-        return ResponseEntity.status(HttpStatus.OK).build();
+    public ResponseEntity<byte[]> generatePdfDocumentByEstimateId(@PathVariable("id") int estimateId) throws JRException {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set(HttpHeaders.CONTENT_DISPOSITION,  "inline;filename=estimate.pdf");
+        return ResponseEntity.status(HttpStatus.OK)
+                .headers(httpHeaders)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(estimateService.generatePdfDocumentByEstimateId(estimateId));
     }
 
     @DeleteMapping("/estimate/{id}")
